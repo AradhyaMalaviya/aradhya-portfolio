@@ -55,9 +55,12 @@ const Portfolio = () => {
                 variant="outline" 
                 size="lg"
                 className="border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors shadow-soft"
+                asChild
               >
-                <Code2 className="w-5 h-5 mr-2" />
-                View Projects
+                <a href="https://github.com/AradhyaMalaviya" target="_blank" rel="noopener noreferrer">
+                  <Code2 className="w-5 h-5 mr-2" />
+                  View Projects
+                </a>
               </Button>
             </div>
           </div>
