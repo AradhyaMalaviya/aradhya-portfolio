@@ -42,7 +42,7 @@ const Portfolio = () => {
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
               Passionate about technology with expertise in Java, Python, and C++
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button 
                 onClick={scrollToContact} 
                 variant="hero"
@@ -51,17 +51,27 @@ const Portfolio = () => {
                 <Mail className="w-5 h-5 mr-2" />
                 Get In Touch
               </Button>
-              <Button 
-                variant="outline" 
-                size="lg"
-                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors shadow-soft"
-                asChild
-              >
-                <a href="https://github.com/AradhyaMalaviya" target="_blank" rel="noopener noreferrer">
-                  <Code2 className="w-5 h-5 mr-2" />
-                  View Projects
+              <div className="flex flex-col items-center gap-2">
+                <Button 
+                  variant="outline" 
+                  size="lg"
+                  className="border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors shadow-soft"
+                  asChild
+                >
+                  <a href="https://github.com/AradhyaMalaviya" target="_blank" rel="noopener noreferrer">
+                    <Code2 className="w-5 h-5 mr-2" />
+                    View Projects
+                  </a>
+                </Button>
+                <a 
+                  href="https://www.linkedin.com/in/aradhya-malviya-26bb31303/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-primary hover:text-primary/80 transition-colors"
+                >
+                  <Linkedin className="w-5 h-5" />
                 </a>
-              </Button>
+              </div>
             </div>
           </div>
         </div>
