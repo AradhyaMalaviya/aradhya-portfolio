@@ -8,7 +8,7 @@ const Portfolio = () => {
   const skills = [
     { name: "Java", level: "Advanced" },
     { name: "Python", level: "Intermediate" },
-    { name: "C++", level: "Intermediate" },
+    { name: "Data Structure and Research", level: "Strong" },
     { name: "Web Development", level: "Learning" },
     { name: "Problem Solving", level: "Strong" },
   ];
