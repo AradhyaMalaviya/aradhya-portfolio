@@ -40,7 +40,7 @@ const Portfolio = () => {
             <p className="text-xl md:text-2xl text-white mb-8">
               Software Developer & BCA Student
             </p>
-            <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+            <p className="text-lg text-white mb-8 max-w-2xl mx-auto">
               Passionate about technology with expertise in Java, Python, and C++
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
