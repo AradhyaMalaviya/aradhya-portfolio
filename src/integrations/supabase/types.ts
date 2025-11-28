@@ -14,7 +14,257 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      assigned_trainers: {
+        Row: {
+          assignment_date: string | null
+          id: string
+          notes: string | null
+          status: string | null
+          subscription_id: string | null
+          trainer_email: string | null
+          trainer_name: string | null
+          trainer_phone: string | null
+          user_id: string
+        }
+        Insert: {
+          assignment_date?: string | null
+          id?: string
+          notes?: string | null
+          status?: string | null
+          subscription_id?: string | null
+          trainer_email?: string | null
+          trainer_name?: string | null
+          trainer_phone?: string | null
+          user_id: string
+        }
+        Update: {
+          assignment_date?: string | null
+          id?: string
+          notes?: string | null
+          status?: string | null
+          subscription_id?: string | null
+          trainer_email?: string | null
+          trainer_name?: string | null
+          trainer_phone?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "assigned_trainers_subscription_id_fkey"
+            columns: ["subscription_id"]
+            isOneToOne: false
+            referencedRelation: "subscriptions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      payment_transactions: {
+        Row: {
+          amount_inr: number
+          created_at: string
+          currency: string | null
+          error_message: string | null
+          id: string
+          order_id: string
+          payment_method: string | null
+          payment_status: string
+          payment_timestamp: string | null
+          razorpay_order_id: string | null
+          razorpay_payment_id: string | null
+          razorpay_signature: string | null
+          subscription_id: string | null
+          transaction_id: string | null
+          user_id: string
+        }
+        Insert: {
+          amount_inr: number
+          created_at?: string
+          currency?: string | null
+          error_message?: string | null
+          id?: string
+          order_id: string
+          payment_method?: string | null
+          payment_status?: string
+          payment_timestamp?: string | null
+          razorpay_order_id?: string | null
+          razorpay_payment_id?: string | null
+          razorpay_signature?: string | null
+          subscription_id?: string | null
+          transaction_id?: string | null
+          user_id: string
+        }
+        Update: {
+          amount_inr?: number
+          created_at?: string
+          currency?: string | null
+          error_message?: string | null
+          id?: string
+          order_id?: string
+          payment_method?: string | null
+          payment_status?: string
+          payment_timestamp?: string | null
+          razorpay_order_id?: string | null
+          razorpay_payment_id?: string | null
+          razorpay_signature?: string | null
+          subscription_id?: string | null
+          transaction_id?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payment_transactions_subscription_id_fkey"
+            columns: ["subscription_id"]
+            isOneToOne: false
+            referencedRelation: "subscriptions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          auth_user_id: string | null
+          created_at: string
+          id: string
+          phone_number: string
+          username: string
+        }
+        Insert: {
+          auth_user_id?: string | null
+          created_at?: string
+          id: string
+          phone_number: string
+          username: string
+        }
+        Update: {
+          auth_user_id?: string | null
+          created_at?: string
+          id?: string
+          phone_number?: string
+          username?: string
+        }
+        Relationships: []
+      }
+      subscription_plans: {
+        Row: {
+          created_at: string
+          description: string | null
+          duration_days: number
+          features: Json | null
+          id: string
+          is_active: boolean | null
+          name: string
+          price_inr: number
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          duration_days?: number
+          features?: Json | null
+          id?: string
+          is_active?: boolean | null
+          name: string
+          price_inr: number
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          duration_days?: number
+          features?: Json | null
+          id?: string
+          is_active?: boolean | null
+          name?: string
+          price_inr?: number
+        }
+        Relationships: []
+      }
+      subscriptions: {
+        Row: {
+          auto_renewal: boolean | null
+          created_at: string
+          end_date: string | null
+          id: string
+          plan_id: string | null
+          start_date: string | null
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          auto_renewal?: boolean | null
+          created_at?: string
+          end_date?: string | null
+          id?: string
+          plan_id?: string | null
+          start_date?: string | null
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          auto_renewal?: boolean | null
+          created_at?: string
+          end_date?: string | null
+          id?: string
+          plan_id?: string | null
+          start_date?: string | null
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "subscriptions_plan_id_fkey"
+            columns: ["plan_id"]
+            isOneToOne: false
+            referencedRelation: "subscription_plans"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      workouts: {
+        Row: {
+          created_at: string
+          duration: string | null
+          exercise_name: string
+          id: string
+          muscle_group: string | null
+          notes: string | null
+          reps: number | null
+          sets: number | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          duration?: string | null
+          exercise_name: string
+          id?: string
+          muscle_group?: string | null
+          notes?: string | null
+          reps?: number | null
+          sets?: number | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          duration?: string | null
+          exercise_name?: string
+          id?: string
+          muscle_group?: string | null
+          notes?: string | null
+          reps?: number | null
+          sets?: number | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "workouts_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
