@@ -6,6 +6,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { Mail, Send } from "lucide-react";
 
+// Replace this with your Formspree form endpoint
+// Get it from: https://formspree.io/
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
+
 const ContactForm = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -47,28 +51,34 @@ const ContactForm = () => {
 
     setIsSubmitting(true);
 
-    // Simulate form submission - in real implementation, you'd send to your backend
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Create mailto link for now
-      const subject = encodeURIComponent(`Portfolio Contact from ${formData.name}`);
-      const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
-      const mailtoLink = `mailto:aaradhya.malaviya2005@gmail.com?subject=${subject}&body=${body}`;
-      
-      window.open(mailtoLink, '_blank');
-      
-      toast({
-        title: "Message prepared!",
-        description: "Your email client should open with the message ready to send.",
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
       });
-      
-      // Reset form
-      setFormData({ name: "", email: "", message: "" });
+
+      if (response.ok) {
+        toast({
+          title: "Message sent successfully!",
+          description: "Thank you for reaching out. I'll get back to you soon.",
+        });
+        
+        // Reset form
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        throw new Error("Failed to send message");
+      }
     } catch (error) {
       toast({
         title: "Something went wrong",
-        description: "Please try again or contact me directly.",
+        description: "Please try again or contact me directly at aaradhya.malaviya2005@gmail.com",
         variant: "destructive",
       });
     } finally {
